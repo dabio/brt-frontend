@@ -17,6 +17,7 @@ DataMapper.setup(:default, ENV['DATABASE_URL'] || 'postgres://username@localhost
 
 Dir[
   './lib/**/*.rb',
+  './app/models/base.rb',
   './app/models/*.rb',
 ].each do |f|
   require f
