@@ -1,0 +1,9 @@
+coverage/
+
+# Vim
+*.swp
+
+# Bundler
+/.bundle
+/bin
+/vendor/gems
