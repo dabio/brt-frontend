@@ -3,15 +3,19 @@
 class Base
 
   def editlink
-    if new?
-      self.class.link
-    else
-      "#{self.class.link}/#{id}"
-    end
+    [link, 'edit'].join('/')
+  end
+
+  def link
+    [self.class.link, id].join('/')
   end
 
   def deletelink
-    "#{self.class.link}/#{id}"
+    link
+  end
+
+  def savelink
+    link
   end
 
   class << self
