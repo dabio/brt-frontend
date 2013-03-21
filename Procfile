@@ -1,1 +1,1 @@
-web: bundle exec thin -R config.ru start -p $PORT -e ${RACK_ENV:-development}
+web: bundle exec puma -t 1:4 -p $PORT -e ${RACK_ENV:-development}

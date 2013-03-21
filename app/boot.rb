@@ -55,7 +55,6 @@ module ModuleName
       disable :reload_templates
     end
 
-    use Rack::Protection
     register Sinatra::Flash
     register Sinatra::R18n
 
@@ -65,8 +64,8 @@ end
 
 Dir[
   './app/helpers.rb',
-  './app/app.rb',
-  './app/*.rb'
+  './app/controllers/app.rb',
+  './app/controllers/*.rb'
 ].each do |f|
   require f
 end
