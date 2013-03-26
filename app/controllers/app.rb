@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 module ModuleName
-  class App
+  class App < Boot
 
     #
     # GET /

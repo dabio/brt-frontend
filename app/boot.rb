@@ -28,7 +28,7 @@ DataMapper.finalize
 
 module ModuleName
 
-  class App < Sinatra::Base
+  class Boot < Sinatra::Base
 
     configure do
       enable :method_override
