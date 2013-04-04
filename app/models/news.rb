@@ -24,6 +24,15 @@ class News < Base
     R18n::l(date, format)
   end
 
+  def message_formatted
+    markdown = Redcarpet::Markdown.new(
+      Redcarpet::Render::HTML,
+      autolink: true,
+      safe_links_only: true
+    )
+    markdown.render(message)
+  end
+
   def self.link
     '/news'
   end

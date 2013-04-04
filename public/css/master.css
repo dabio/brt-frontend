@@ -38,7 +38,15 @@ h2 {
   text-decoration: none;
 }
 #news h4 a:hover { text-decoration: underline }
-
+#news .info a,
+#news table.results a {
+  color: #333;
+  text-decoration: none;
+}
+#news .info a:hover,
+#news table.results a:hover {
+  text-decoration: underline;
+}
 
 /* =Events
 -----------------------------------------------------------------------------*/

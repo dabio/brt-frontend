@@ -1,1 +1,47 @@
-News Detail
+<h2><%= news.title %></h2>
+
+<div id="news" class="row">
+
+  <div class="twothird">
+    <% if news.teaser.length > 3 %>
+      <h3 class="subheader"><%= news.teaser %></h3>
+    <% end %>
+
+    <%= news.message_formatted %>
+
+    <% if news.event and news.event.participations.count > 0 %>
+
+      <table class="width-100 simple stroked results">
+
+        <thead>
+          <tr>
+            <th>Ergebnisse</th>
+            <th class="right">Ges.</th>
+            <th class="right">AK</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% news.event.participations.each do |p| %>
+            <tr>
+              <td><a href="<%= p.person.link %>"><%= p.person.name %></a></td>
+              <td class="right"><%= p.position_overall %></td>
+              <td class="right"><%= p.position_age_class %></td>
+            </tr>
+          <% end %>
+        </tbody>
+
+      </table>
+
+    <% end %>
+
+  </div>
+
+  <div class="third info">
+    <h6>Erschienen</h6>
+    <p><%= news.date_formatted %></p>
+    <h6>Autor</h6>
+    <p><a href="<%= news.person.link %>"><%= news.person.name %></a></p>
+  </div>
+
+</div>
