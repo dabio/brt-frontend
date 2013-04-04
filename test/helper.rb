@@ -7,6 +7,9 @@ SimpleCov.start do
   add_filter 'vendor/gems'
 
   add_group 'Models', 'app/models'
+  add_group 'Controllers', 'app/controllers'
+  add_group 'Libraries', 'lib/'
+  add_group 'Tests', 'test/'
 end
 
 # Use test database

@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-module ModuleName
+module Brt
 
   class Boot
 
@@ -10,20 +10,28 @@ module ModuleName
       include Rack::Utils
       alias_method :h, :escape_html
 
-      # This gives us the currently logged in user. We keep track of that by just
-      # setting a session variable with their is. If it doesn't exist, we want to
-      # return nil.
-      def current_user
-        unless @cp and @request.session[:user_id]
-          @cp = User.get(@request.session[:user_id])
-        end
-        @cp
+      # Returns the current page given by the url request parameter. Defaults to
+      # 1.
+      def current_page
+        params[:page] && params[:page].match(/\d+/) ? params[:page].to_i : 1
       end
 
-      # Checks if this is a logged in user
-      def has_auth?
-        !current_user.nil?
+      def partial(template)
+        erb :"_partials/#{template}"
       end
+
+      def person
+        @person ||= Person.first(slug: params[:slug]) || not_found
+      end
+
+      def static
+        'http://static.berlinracingteam.de'
+      end
+
+      def today
+        Date.today
+      end
+
     end
   end
 end

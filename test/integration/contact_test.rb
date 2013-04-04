@@ -1,9 +1,9 @@
 require File.expand_path('../../helper', __FILE__)
 
-context 'App' do
+context 'Contact' do
 
   def app
-    Brt::App
+    Brt::Contact
   end
 
   setup do; end
@@ -11,6 +11,7 @@ context 'App' do
   test '/' do
     get '/'
     assert last_response.ok?
+    assert last_response.body.include?('Kontakt')
   end
 
 end

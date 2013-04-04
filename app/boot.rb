@@ -13,7 +13,7 @@ Bundler.require(:default, RACK_ENV)
 
 # PostgreSQL
 DataMapper::Logger.new($stdout, :debug) if RACK_ENV == 'development'
-DataMapper.setup(:default, ENV['DATABASE_URL'] || 'postgres://username@localhost/appname')
+DataMapper.setup(:default, ENV['DATABASE_URL'] || 'postgres://dan@localhost/brt')
 
 Dir[
   './lib/**/*.rb',
@@ -26,13 +26,13 @@ end
 # Finalize Datamapper Models
 DataMapper.finalize
 
-module ModuleName
+module Brt
 
   class Boot < Sinatra::Base
 
     configure do
       enable :method_override
-      enable :sessions
+      #enable :sessions
 
       set :root, ROOT_DIR
       set :public_folder, "#{ROOT_DIR}/../public"
@@ -44,7 +44,7 @@ module ModuleName
     end
 
     configure :development do
-      set :session_secret, "My Session Secret"
+      #set :session_secret, "My Session Secret"
       enable :logging
       enable :show_exceptions
     end

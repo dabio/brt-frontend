@@ -1,0 +1,26 @@
+<h2>Rennkalender <%= events_by_month.values.first.first.date.year %></h2>
+
+<% events_by_month.each do |month, events| %>
+
+  <h3><%= events.first.date_formatted('%B') %></h3>
+
+  <ul class="block-four events">
+    <% events.each_with_index do |e, index| %>
+      <li<% if index % 4 == 0 %> style="clear:both"<% end %>>
+        <h5>
+          <% if e.date < today %>
+            <a href="<%= e.link %>"><%= e.title %> »</a>
+          <% else %>
+            <%= e.title %>
+          <% end %>
+        </h5>
+        <h5 class="subheader"><%= e.date_formatted %>, <%= e.distance %> km</h5>
+      </li>
+    <% end %>
+  </ul>
+
+  <% unless events_by_month.values.last.last == events.last %>
+    <hr/>
+  <% end %>
+
+<% end %>

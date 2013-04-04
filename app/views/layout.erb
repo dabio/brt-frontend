@@ -9,11 +9,19 @@
 
 <body>
 
-  <header></header>
+  <section class="container">
 
-  <section><%= yield %></section>
+    <section class="container">
+      <%= partial :header %>
+      <%= partial :nav %>
+    </section>
+    <%= partial :flash %>
 
-  <footer></footer>
+    <%= yield %>
+
+    <%= partial :footer %>
+
+  </section>
 
 </body>
 </html>

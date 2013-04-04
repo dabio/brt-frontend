@@ -23,6 +23,11 @@ task :cleanup do
   `rm -fr bin/ vendor/ .bundle/ Gemfile.lock`
 end
 
+desc 'Start with foreman to emulate the provider'
+task :foreman do
+  `bundle exec foreman start`
+end
+
 task :load_migrations => :env do
   require 'dm-migrations'
   require 'dm-migrations/migration_runner'
