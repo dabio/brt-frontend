@@ -9,31 +9,7 @@
 
     <%= news.message_formatted %>
 
-    <% if news.event and news.event.participations.count > 0 %>
-
-      <table class="width-100 simple stroked results">
-
-        <thead>
-          <tr>
-            <th>Ergebnisse</th>
-            <th class="right">Ges.</th>
-            <th class="right">AK</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% news.event.participations.each do |p| %>
-            <tr>
-              <td><a href="<%= p.person.link %>"><%= p.person.name %></a></td>
-              <td class="right"><%= p.position_overall %></td>
-              <td class="right"><%= p.position_age_class %></td>
-            </tr>
-          <% end %>
-        </tbody>
-
-      </table>
-
-    <% end %>
+    <%= partial :event_results, event: news.event %>
 
   </div>
 

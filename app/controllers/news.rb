@@ -3,6 +3,10 @@
 module Brt
   class NewsApp < Boot
 
+    def news
+      @news ||= News.first(date: params_date, slug: params[:slug]) || not_found
+    end
+
     #
     # GET /news
     #

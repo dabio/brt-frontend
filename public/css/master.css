@@ -57,7 +57,12 @@ h2 {
   color: #222;
   text-decoration: none;
 }
-.events h5 a:hover {
+#event table.results a {
+  color: #333;
+  text-decoration: none;
+}
+.events h5 a:hover,
+#event table.results a:hover {
   text-decoration: underline;
 }
 

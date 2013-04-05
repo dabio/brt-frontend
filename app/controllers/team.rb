@@ -3,6 +3,10 @@
 module Brt
   class Team < Boot
 
+    def person
+      @person ||= Person.first(slug: params[:slug]) || not_found
+    end
+
     #
     # GET /team
     # Shows a list of all team members.

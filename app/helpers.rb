@@ -16,20 +16,12 @@ module Brt
         params[:page] && params[:page].match(/\d+/) ? params[:page].to_i : 1
       end
 
-      def partial(template)
-        erb :"_partials/#{template}"
+      def partial(template, locals={})
+        erb :"_partials/#{template}", locals: locals
       end
 
       def params_date
         Date.new(params[:year].to_i, params[:month].to_i, params[:day].to_i)
-      end
-
-      def person
-        @person ||= Person.first(slug: params[:slug]) || not_found
-      end
-
-      def news
-        @news ||= News.first(date: params_date, slug: params[:slug]) || not_found
       end
 
       def static
