@@ -11,10 +11,7 @@ class Person < Base
   timestamps :at
   property :slug,       String
 
-  #has 1, :visit
-  #has n, :news
-  #has n, :reports
-  #has n, :comments
+  has n, :news
   has n, :participations
   has n, :events, through: :participations
 

@@ -36,6 +36,10 @@ module Brt
         Date.new(params[:year].to_i, params[:month].to_i, params[:day].to_i)
       end
 
+      def sponsors
+        @sponsors ||= Sponsor.all
+      end
+
       def static
         'http://static.berlinracingteam.de'
       end
