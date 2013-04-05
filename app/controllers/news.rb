@@ -11,7 +11,7 @@ module Brt
     # GET /news
     #
     get '/' do
-      count, news = News.paginated(page: current_page, per_page: 20)
+      count, news = News.paginated(page: current_page, per_page: 10)
       erb :'news/index', locals: {
         news: news, page: current_page, page_count: count
       }

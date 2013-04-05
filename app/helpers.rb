@@ -16,6 +16,18 @@ module Brt
         params[:page] && params[:page].match(/\d+/) ? params[:page].to_i : 1
       end
 
+      def pagination(page, page_count, url)
+        Array.new(page_count) do |i|
+          if i+1 == page
+            { title: i+1 }
+          elsif i == 0
+            { title: i+1, href: url }
+          else
+            { title: i+1, href: "#{url}?page=#{i+1}" }
+          end
+        end
+      end
+
       def partial(template, locals={})
         erb :"_partials/#{template}", locals: locals
       end

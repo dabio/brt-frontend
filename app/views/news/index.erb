@@ -2,19 +2,25 @@
 
 <div id="news" class="row">
 
-  <ul class="twothird">
-    <% news.each do |e| %>
-      <li>
-        <% if e.message.length > 3 %>
-          <h4><a href="<%= e.link %>"><%= e.title %> »</a></h4>
-        <% else %>
-          <h4><%= e.title %></h4>
-        <% end %>
-        <h4 class="subheader"><%= e.date_formatted %></h4>
-        <p><%= e.teaser %></p>
-      </li>
-    <% end %>
-  </ul>
+  <div class="twothird">
+
+    <ul>
+      <% news.each do |e| %>
+        <li>
+          <% if e.message.length > 3 %>
+            <h4><a href="<%= e.link %>"><%= e.title %> »</a></h4>
+          <% else %>
+            <h4><%= e.title %></h4>
+          <% end %>
+          <h4 class="subheader"><%= e.date_formatted %></h4>
+          <p><%= e.teaser %></p>
+        </li>
+      <% end %>
+    </ul>
+
+    <%= partial :pagination, { page_count: page_count, url: News.link, page: page } %>
+
+  </div>
 
   <div class="third">
   </div>
