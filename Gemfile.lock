@@ -33,7 +33,9 @@ GEM
     rack-test (0.6.2)
       rack (>= 1.0)
     rack-timeout (0.0.3)
+    rb-fsevent (0.9.3)
     redcarpet (2.2.2)
+    sass (3.2.7)
     shotgun (0.9)
       rack (>= 1.0)
     simplecov (0.7.1)
@@ -68,7 +70,9 @@ DEPENDENCIES
   puma
   rack-test
   rack-timeout
+  rb-fsevent
   redcarpet
+  sass
   shotgun
   simplecov
   sinatra

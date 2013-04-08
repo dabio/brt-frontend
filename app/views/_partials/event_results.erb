@@ -17,7 +17,7 @@
       <tbody>
         <% event.participations.each do |p| %>
           <tr>
-            <td><a href="<%= p.person.link %>"><%= p.person.name %></a></td>
+            <td><a class="black" href="<%= p.person.link %>"><%= p.person.name %></a></td>
             <td class="right"><%= p.position_overall %></td>
             <td class="right"><%= p.position_age_class %></td>
           </tr>

@@ -4,7 +4,7 @@
     <span class="page-items">
       <% pagination(page, page_count, url).each do |p| %>
         <% if p[:href] %>
-          <a href="<%= p[:href] %>"><%= p[:title] %></a>
+          <a class="black" href="<%= p[:href] %>"><%= p[:title] %></a>
         <% else %>
           <span><%= p[:title] %></span>
         <% end %>

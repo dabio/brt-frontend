@@ -7,7 +7,7 @@ module Brt
     # GET /
     #
     get '/' do
-      erb :index
+      erb :index, locals: { news: News.all(limit: 8) }
     end
 
   end

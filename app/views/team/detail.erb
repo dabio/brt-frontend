@@ -28,7 +28,7 @@
           <tbody>
             <% participations.each do |p| %>
               <tr>
-                <td><%= p.event.title %>, <%= p.event.distance %> km</td>
+                <td><a class="black" href="<%= p.event.link %>"><%= p.event.title %>, <%= p.event.distance %> km</a></td>
                 <td class="right"><%= p.position_overall %></td>
                 <td class="right"><%= p.position_age_class %></td>
               </tr>

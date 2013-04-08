@@ -8,7 +8,7 @@
       <% news.each do |e| %>
         <li>
           <% if e.message.length > 3 %>
-            <h4><a href="<%= e.link %>"><%= e.title %> »</a></h4>
+            <h4><a class="black" href="<%= e.link %>"><%= e.title %> »</a></h4>
           <% else %>
             <h4><%= e.title %></h4>
           <% end %>

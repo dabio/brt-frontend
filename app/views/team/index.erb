@@ -3,9 +3,8 @@
 <ul id="people" class="block-four">
   <% people.each do |person| %>
     <li class="text-centered">
-      <a href="<%= person.link %>">
-        <h5 class="subtitle"><img src="<%= person.medium %>" alt="<%= person.name %>" width="182" height="137"/></h5>
-        <h5><%= person.name %></h5>
+      <a href="<%= person.link %>"><img src="<%= person.medium %>" alt="<%= person.name %>" width="182" height="137"/></a>
+      <h5><a class="black" href="<%= person.link %>"><%= person.name %></a></h5>
       </a>
     </li>
   <% end %>

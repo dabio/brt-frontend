@@ -28,6 +28,11 @@ task :foreman do
   `bundle exec foreman start`
 end
 
+desc 'Start the sass engine'
+task :sass do
+  `bundle exec sass --style compressed --scss --watch public/css/master.scss`
+end
+
 task :load_migrations => :env do
   require 'dm-migrations'
   require 'dm-migrations/migration_runner'

@@ -9,7 +9,7 @@
       <li<% if index % 4 == 0 %> style="clear:both"<% end %>>
         <h5>
           <% if e.date < today %>
-            <a href="<%= e.link %>"><%= e.title %> »</a>
+            <a class="black" href="<%= e.link %>"><%= e.title %> »</a>
           <% else %>
             <%= e.title %>
           <% end %>
