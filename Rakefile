@@ -13,6 +13,23 @@ task :env do
   require './app/boot'
 end
 
+desc 'Compile and run the site'
+task :default do
+  pids = [
+    spawn('bundle exec shotgun'),
+    spawn('bundle exec sass --style compressed --scss --watch public/css/master.scss')
+  ]
+
+  trap 'INT' do
+    Process.kill 'INT', *pids
+    exit 1
+  end
+
+  loop do
+    sleep 1
+  end
+end
+
 desc 'Open an irb session preloaded with this library'
 task :console do
   `irb -rubygems -r ./app/boot`
