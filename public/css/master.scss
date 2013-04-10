@@ -47,10 +47,13 @@ nav.primary {
       padding-bottom: 10px;
     }
     a:hover {
-      border-bottom: 4px solid $blue-color;
+      border-bottom-color: $blue-color;
       color: $blue-color;
-      padding-bottom: 7px;
       text-decoration: none;
+    }
+    a.active {
+      border-bottom: 4px solid $blue-color;
+      padding-bottom: 7px;
     }
   }
 }

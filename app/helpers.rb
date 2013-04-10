@@ -16,6 +16,11 @@ module Brt
         params[:page] && params[:page].match(/\d+/) ? params[:page].to_i : 1
       end
 
+      def active_page
+        @ap = request.path.split('/').delete_if(&:empty?).first || 'home' unless @ap
+        @ap
+      end
+
       def pagination(page, page_count, url)
         Array.new(page_count) do |i|
           if i+1 == page
