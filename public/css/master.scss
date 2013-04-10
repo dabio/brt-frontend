@@ -2,6 +2,7 @@
 
 $color: #333;
 $header-color: #222;
+$blue-color: #369;
 
 /* =Typography
 -----------------------------------------------------------------------------*/
@@ -30,6 +31,33 @@ h2 {
 
 /* =Nav
 -----------------------------------------------------------------------------*/
+nav.primary {
+  border-bottom: 1px solid #eee;
+
+  ul {
+    float: right;
+
+    li:last-of-type {
+      margin-right: 0;
+    }
+
+    a {
+      border-bottom: 1px solid #eee;
+      margin-bottom: -1px;
+      padding-bottom: 10px;
+    }
+    a:hover {
+      border-bottom-color: $blue-color;
+      color: $blue-color;
+      text-decoration: none;
+    }
+    a.active {
+      border-bottom: 4px solid $blue-color;
+      padding-bottom: 7px;
+    }
+  }
+}
+
 .pagination {
   left: 0;
 }
