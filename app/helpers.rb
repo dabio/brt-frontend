@@ -21,6 +21,10 @@ module Brt
         @ap
       end
 
+      def all_pages
+        ['news', 'rennen', 'team', 'kontakt']
+      end
+
       def pagination(page, page_count, url)
         Array.new(page_count) do |i|
           if i+1 == page
