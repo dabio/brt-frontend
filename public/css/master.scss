@@ -145,6 +145,9 @@ h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
 a.black:hover {
   text-decoration: underline;
 }
+h1 a.black:hover {
+  text-decoration: none;
+}
 
 /* =Footer
 -----------------------------------------------------------------------------*/
