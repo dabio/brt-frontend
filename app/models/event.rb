@@ -3,12 +3,13 @@
 class Event < Base
   include DataMapper::Resource
 
-  property :id,         Serial
-  property :date,       Date
-  property :title,      String
-  property :distance,   Integer
+  property :id,       Serial
+  property :date,     Date
+  property :title,    String
+  property :url,      String
+  property :distance, Integer
   timestamps :at
-  property :slug,       String
+  property :slug,     String
 
   belongs_to :person
   has 1, :news
@@ -31,11 +32,15 @@ class Event < Base
 
   class << self
 
-    def all_for_year_by_month(year=Date.today.year)
-      events = all(
+    def all_for_year(year=Date.today.year)
+      all(
         :date.gte => Date.new(year, 1, 1),
         :date.lte => Date.new(year, 12, 31)
-      ).group_by { |e| e.date.month }
+      )
+    end
+
+    def all_for_year_by_month(year=Date.today.year)
+      all_for_year(year).group_by { |e| e.date.month }
     end
 
     def link
