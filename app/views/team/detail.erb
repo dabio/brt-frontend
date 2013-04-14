@@ -44,6 +44,8 @@
 
   <div class="third">
     <% if participations.count > 0 %>
+      <h6>Kontakt</h6>
+      <p><a class="email black"><%= person.encrypted_email %></a></p>
       <h6>Statistiken</h6>
       <p><%= person.total_distance %> km in <%= person.results.count %> Rennen</p>
     <% end %>

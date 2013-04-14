@@ -17,6 +17,10 @@ class Person < Base
 
   default_scope(:default).update(order: [:last_name, :first_name])
 
+  def encrypted_email
+    email.gsub(/@/, ' [at] ').gsub(/\./, ' . ')
+  end
+
   def name
     "#{first_name} #{last_name}"
   end

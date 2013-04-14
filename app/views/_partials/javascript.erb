@@ -1,0 +1,2 @@
+<script src="//cdnjs.cloudflare.com/ajax/libs/zepto/1.0/zepto.min.js"></script>
+<script>$("a.email").each(function(a,b){if(!b.innerHTML)return!1;var c,d;/char(\d+)/g.test(b.className)&&(c=RegExp.$1),d=b.innerHTML.replace(" . ",".").replace(" [at] ","@"),b.href="mailto:"+d,b.innerHTML=d})</script>

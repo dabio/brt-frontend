@@ -12,7 +12,7 @@ module Brt
     # Shows a list of all team members.
     #
     get '/' do
-      erb :'team/index', locals: { people: Person.all }
+      erb :'team/index', locals: { people: Person.all, title: 'Team' }
     end
 
     #
@@ -21,7 +21,7 @@ module Brt
     #
     get '/:slug' do |slug|
       erb :'team/detail', locals: {
-        person: person,
+        person: person, title: person.name,
         participations: person.results_by_year
       }
     end
