@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf8">
-  <title>Title</title>
+  <title><% if defined? title %><%= title %> - Berlin Racing Team<% else %>Berlin Racing Team <% end %></title>
   <link rel="stylesheet" href="/css/master.css">
 </head>
 
@@ -10,10 +10,8 @@
 
   <section class="container">
 
-    <section class="container">
-      <%= partial :header %>
-      <%= partial :nav %>
-    </section>
+    <%= partial :header %>
+    <%= partial :nav %>
     <%= partial :flash %>
 
     <%= yield %>
@@ -22,5 +20,6 @@
 
   </section>
 
+  <%= partial :javascript %>
 </body>
 </html>

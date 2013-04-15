@@ -8,7 +8,7 @@ module Brt
     # Shows the contact form.
     #
     get '/' do
-      erb :'contact/index', locals: { email: Email.new }
+      erb :'contact/index', locals: { email: Email.new, title: 'Kontakt' }
     end
 
     #

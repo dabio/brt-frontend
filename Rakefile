@@ -35,19 +35,23 @@ task :console do
   `irb -rubygems -r ./app/boot`
 end
 
-desc 'Removes all installed gems'
-task :cleanup do
-  `rm -fr bin/ vendor/ .bundle/ Gemfile.lock`
+###############
+# Un-/Install #
+###############
+
+desc 'Installs all dependencies for running locally'
+task :install do
+  `bundle install --binstubs --path vendor/gems --without production`
+end
+
+desc 'Uninstalls all rubygems and temp files'
+task :uninstall do
+  rm_rf ['Gemfile.lock', 'vendor/', 'bin/', '.bundle/']
 end
 
 desc 'Start with foreman to emulate the provider'
 task :foreman do
   `bundle exec foreman start`
-end
-
-desc 'Start the sass engine'
-task :sass do
-  `bundle exec sass --style compressed --scss --watch public/css/master.scss`
 end
 
 task :load_migrations => :env do
