@@ -1,0 +1,23 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//berlinracingteam//events//DE
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Berlin Racing Team Rennen
+X-WR-TIMEZONE:UTC
+X-WR-CALDESC:Berlin Racing Team Rennen
+<% events.each do |event| %>
+BEGIN:VEVENT
+DTSTAMP:<%= event.created_at.strftime('%Y%m%dT%H%M%SZ') %>
+DTSTART;VALUE=DATE:<%= event.date.strftime('%Y%m%d') %>
+DTEND;VALUE=DATE:<%= event.date.+(1).strftime('%Y%m%d') %>
+SUMMARY:<%= event.title.gsub(/,/, '\,') %>\, <%= event.distance %>km
+<% if event.url.length > 3 %>
+URL:<%= event.url %>
+<% end %>
+<% event.participations.each do |p| %>
+ATTENDEE;PARTSTAT=ACCEPTED;CN="<%= p.person.name %>":MAILTO:<%= p.person.email %>
+<% end %>
+END:VEVENT
+<% end %>
+END:VCALENDAR
