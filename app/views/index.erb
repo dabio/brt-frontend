@@ -7,9 +7,9 @@
   <% if sponsors.count > 0 %>
     <h4>Unsere Partner und Sponsoren</h4>
     <ul class="block-four">
-      <% sponsors.each do |s| %>
-        <li>
-          <%= s.title %>
+      <% sponsors.each_with_index do |s, index| %>
+        <li class="sponsor<%= index %>">
+        <a href="<%= s.url %>"><img src="/img/sponsors_home.png" alt="<%= h s.title %>"/></a>
         </li>
       <% end %>
     </ul>
