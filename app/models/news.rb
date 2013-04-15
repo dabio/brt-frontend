@@ -14,7 +14,7 @@ class News < Base
   belongs_to :person
   belongs_to :event, required: false
 
-  default_scope(:default).update(order: [:date, :updated_at.desc])
+  default_scope(:default).update(order: [:date.desc, :updated_at.desc])
 
   def link
     [self.class.link, date.strftime('%Y/%m/%d'), slug].join('/')
