@@ -21,8 +21,7 @@ module Brt
     #
     get '/:slug' do |slug|
       erb :'team/detail', locals: {
-        person: person, title: person.name,
-        participations: person.results_by_year
+        person: person, title: person.name, participations: person.results_by_year
       }
     end
 

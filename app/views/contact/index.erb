@@ -3,6 +3,11 @@
 <div id="contact" class="row">
 
   <div class="twothird">
+
+    <% if message %>
+      <p class="success">Vielen Dank für deine Nachricht! Wir werden sie so schnell wie möglich beantworten.</p>
+    <% end %>
+
     <p>Du hast Fragen? Möchtest gerne bei uns mitfahren? Als Sponsor auftreten? Oder einfach nur einen Kommentar abgeben? Dann schreib uns!</p>
 
     <form method="post" action="<%= Email.createlink %>" class="forms">

@@ -4,8 +4,6 @@ module Brt
 
   class Boot
 
-    helpers Sinatra::RedirectWithFlash
-
     helpers do
       include Rack::Utils
       alias_method :h, :escape_html

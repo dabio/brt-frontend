@@ -31,8 +31,7 @@ module Brt
   class Boot < Sinatra::Base
 
     configure do
-      enable :method_override
-      #enable :sessions
+      disable :sessions
 
       set :root, ROOT_DIR
       set :public_folder, "#{ROOT_DIR}/../public"
@@ -44,7 +43,6 @@ module Brt
     end
 
     configure :development do
-      #set :session_secret, "My Session Secret"
       enable :logging
       enable :show_exceptions
     end
@@ -55,7 +53,6 @@ module Brt
       disable :reload_templates
     end
 
-    register Sinatra::Flash
     register Sinatra::R18n
 
   end

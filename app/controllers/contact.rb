@@ -8,7 +8,9 @@ module Brt
     # Shows the contact form.
     #
     get '/' do
-      erb :'contact/index', locals: { email: Email.new, title: 'Kontakt' }
+      erb :'contact/index', locals: {
+        email: Email.new, title: 'Kontakt', message: params.has_key?("success")
+      }
     end
 
     #
@@ -21,10 +23,9 @@ module Brt
 
       email = Email.new(params[:contact])
       if email.save
-        p email.name
-        redirect to('/'), success: "#{email.name}, vielen Dank für deine Nachricht! Wir werden sie so schnell wie möglich beantworten."
+        redirect to('/?success=yes')
       else
-        erb :'contact/index', locals: { email: email }
+        erb :'contact/index', locals: { email: email, title: 'Kontakt' }
       end
     end
 
