@@ -8,6 +8,7 @@ class Person < Base
   property :last_name,  String
   property :email,      String
   property :info,       Text, lazy: true
+  property :is_active,  Boolean
   timestamps :at
   property :slug,       String
 
@@ -15,7 +16,7 @@ class Person < Base
   has n, :participations
   has n, :events, through: :participations
 
-  default_scope(:default).update(order: [:last_name, :first_name])
+  default_scope(:default).update(is_active: true, order: [:last_name, :first_name])
 
   def encrypted_email
     email.gsub(/@/, ' [at] ').gsub(/\./, ' . ')
