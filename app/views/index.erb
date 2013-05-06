@@ -9,7 +9,9 @@
     <ul class="block-four">
       <% sponsors.each_with_index do |s, index| %>
         <li class="sponsor<%= index %>">
-        <a href="<%= s.url %>"><img src="/img/sponsors_home.png" alt="<%= h s.title %>"/></a>
+          <a href="<%= s.url %>" class="img">
+            <img src="<%= s.image_url %>" alt="<%= h s.title %>"/>
+          </a>
         </li>
       <% end %>
     </ul>

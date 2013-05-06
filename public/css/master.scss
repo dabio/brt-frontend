@@ -95,6 +95,29 @@ nav.primary {
 #home h4 {
   margin-top: 3em;
 }
+#home .img {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  height: 103px;
+  width: 186px;
+}
+#home .img:hover img {
+  top: -103px;
+}
+#home img {
+  position: relative;
+}
+#home .sponsor4 .img,
+#home .sponsor5 .img,
+#home .sponsor6 .img {
+  height: 43px;
+}
+#home .sponsor4 .img:hover img,
+#home .sponsor5 .img:hover img,
+#home .sponsor6 .img:hover img {
+  top: -43px;
+}
 
 /* =News
 -----------------------------------------------------------------------------*/
