@@ -1,7 +1,7 @@
 # encoding: utf-8
 require File.expand_path(File.dirname(__FILE__) + '/app/boot')
 
-use Rack::ForceDomain, ENV['DOMAIN']
+use Rack::CanonicalHost, ENV['DOMAIN'] if ENV['DOMAIN']
 use Rack::Gauges, tracker: '50789ec5f5a1f5156f00006f'
 
 run Rack::URLMap.new({
