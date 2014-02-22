@@ -12,7 +12,7 @@ module Brt
     # Shows a list of all team members.
     #
     get '/' do
-      erb :'team/index', locals: { people: Person.all, title: 'Team' }
+      erb :'team/index', locals: { people: Person.all(is_active: true), title: 'Team' }
     end
 
     #

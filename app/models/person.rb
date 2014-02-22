@@ -16,7 +16,7 @@ class Person < Base
   has n, :participations
   has n, :events, through: :participations
 
-  default_scope(:default).update(is_active: true, order: [:last_name, :first_name])
+  default_scope(:default).update(order: [:last_name, :first_name])
 
   def encrypted_email
     email.gsub(/@/, ' [at] ').gsub(/\./, ' . ')
