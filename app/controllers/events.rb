@@ -14,8 +14,8 @@ module Brt
       year ||= today.year
       events = Event.all(
         :is_hidden => false,
-        :date.gte => Date.new(year, 1, 1),
-        :date.lte => Date.new(year, 12, 31)
+        :date.gte => Date.new(year.to_i, 1, 1),
+        :date.lte => Date.new(year.to_i, 12, 31)
       ).group_by { |e| e.date.month }
       not_found unless events.length > 0
 
