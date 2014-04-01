@@ -13,7 +13,12 @@ module Brt
 
     get '/rennen.ics' do
       content_type 'text/calendar'
-      erb :'events/ics', layout: false, locals: { events: Event.all_for_year }
+      erb :'events/ics', layout: false, locals: {
+        events: Event.all(
+          :date.gte => Date.new(Date.today.year, 1, 1),
+          :date.lte => Date.new(Date.today.year, 12, 31)
+        )
+      }
     end
 
   end

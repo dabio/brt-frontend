@@ -8,6 +8,7 @@ class Event < Base
   property :title,    String
   property :url,      String
   property :distance, Integer
+  property :is_hidden,Boolean
   timestamps :at
   property :slug,     String
 
@@ -31,17 +32,6 @@ class Event < Base
   end
 
   class << self
-
-    def all_for_year(year=Date.today.year)
-      all(
-        :date.gte => Date.new(year, 1, 1),
-        :date.lte => Date.new(year, 12, 31)
-      )
-    end
-
-    def all_for_year_by_month(year=Date.today.year)
-      all_for_year(year).group_by { |e| e.date.month }
-    end
 
     def link
       '/rennen'

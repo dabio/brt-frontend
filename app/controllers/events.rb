@@ -12,7 +12,11 @@ module Brt
     #
     get '/:year?' do |year|
       year ||= today.year
-      events = Event.all_for_year_by_month(year.to_i)
+      events = Event.all(
+        :is_hidden => false,
+        :date.gte => Date.new(year, 1, 1),
+        :date.lte => Date.new(year, 12, 31)
+      ).group_by { |e| e.date.month }
       not_found unless events.length > 0
 
       erb :'events/index', locals: {
