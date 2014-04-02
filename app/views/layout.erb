@@ -4,6 +4,16 @@
   <meta charset="utf8">
   <title><% if defined? title %><%= title %> - Berlin Racing Team<% else %>Berlin Racing Team <% end %></title>
   <link rel="stylesheet" href="/css/master.css?1">
+
+  <%# Facebook Open Graph %>
+  <% if defined? og %>
+    <meta property="og:type" content="<%= og[:type] %>">
+    <meta property="og:site_name" content="Berlin Racing Team">
+    <meta property="og:title" content="<%= og[:title] %>">
+    <meta property="og:description" content="<%= og[:description] %>">
+    <meta property="og:image" content="<%= og[:image] %>">
+  <% end %>
+
 </head>
 
 <body>

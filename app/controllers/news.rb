@@ -22,7 +22,16 @@ module Brt
     # GET /news/:year/:month/:day/:slug
     #
     get '/:year/:month/:day/:slug' do
-      erb :'news/detail', locals: { news: news, title: news.title }
+      erb :'news/detail', locals: {
+        news: news,
+        title: news.title,
+        og: {
+          title: news.title,
+          description: news.teaser,
+          type: 'article',
+          image: '/img/header.png'
+        }
+      }
     end
 
   end
