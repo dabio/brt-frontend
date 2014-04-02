@@ -29,6 +29,7 @@ module Brt
           title: news.title,
           description: news.teaser,
           type: 'article',
+          url: request.url,
           image: '/img/header.png'
         }
       }
