@@ -9,7 +9,7 @@ $blue-color: #369;
 body {
   color: $color;
 }
-	
+
 /* =Links
 -----------------------------------------------------------------------------*/
 
@@ -108,12 +108,12 @@ nav.primary {
 #home img {
   position: relative;
 }
-#home .sponsor4 .img,
+//#home .sponsor4 .img,
 #home .sponsor5 .img,
 #home .sponsor6 .img {
   height: 43px;
 }
-#home .sponsor4 .img:hover img,
+//#home .sponsor4 .img:hover img,
 #home .sponsor5 .img:hover img,
 #home .sponsor6 .img:hover img {
   top: -43px;
