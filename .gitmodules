@@ -1,0 +1,3 @@
+[submodule "vendor/kube"]
+	path = vendor/kube
+	url = git@github.com:imperavi/kube.git
