@@ -7,4 +7,9 @@ coverage/
 # Bundler
 /.bundle
 /bin
-/vendor/gems
+
+# Vendor
+/vendor/
+
+# Sass
+/.sass-cache
