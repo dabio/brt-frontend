@@ -1,0 +1,38 @@
+<h2><%= person.name %></h2>
+
+<row>
+  <column cols="8">
+    <% if participations %>
+      <h3>Ergebnisse</h3>
+
+      <% participations.each do |year, participations| %>
+        <table>
+          <thead>
+            <tr>
+              <th><%= year %></th>
+              <th class="text-right">Ges.</th>
+              <th class="text-right">AK</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <td colspan="3"></td>
+            </tr>
+          </tfoot>
+          <tbody>
+          </tbody>
+        </table>
+      <% end %>
+
+    <% end %>
+  </column>
+
+  <column cols="4">
+    <% if participations %>
+      <h6>Kontakt</h6>
+      <p><a class="email"><%= person.encrypted_email %></a></p>
+      <h6>Statistiken</h6>
+      <p><%= person.total_distance %> km in <%= person.results.count %> Rennen</p>
+    <% end %>
+  </column>
+</row>

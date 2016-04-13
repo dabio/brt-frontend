@@ -1,0 +1,24 @@
+<h3> Datum: <%= event.date_formatted %>, Distanz: <%= event.distance %> km</h3>
+
+<% if event.participations.count > 0 %>
+  <table class="table-responsive">
+    <thead>
+      <tr>
+        <th>Ergebnisse</th>
+        <th class="text-right">ges.</th>
+        <th class="text-right">AK</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <% event.participations.each do |p| %>
+        <tr>
+          <td><a href="<%= p.person.link %>"><%= p.person.name %></a></td>
+          <td class="text-right"><%= p.position_overall %></td>
+          <td class="text-right"><%= p.position_age_class %></td>
+        </tr>
+      <% end %>
+
+    </tbody>
+  </table>
+<% end %>

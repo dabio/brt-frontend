@@ -1,22 +1,17 @@
 source 'https://rubygems.org'
-ruby '2.2.1'
+ruby '2.3.0'
 
-gem 'dm-core'
-gem 'dm-aggregates'
-gem 'dm-postgres-adapter'
-gem 'dm-timestamps'
-gem 'dm-validations'
+gem 'pg'
+gem 'puma', require: false
 gem 'rack-canonical-host'
-gem 'rack-timeout', require: 'rack/timeout'
 gem 'redcarpet'
+gem 'sequel'
 gem 'sinatra', require: 'sinatra/base'
 gem 'sinatra-r18n', require: 'sinatra/r18n'
-gem 'puma', require: false
 
 group :development do
   gem 'foreman', require: false
-  gem 'shotgun', require: false
-  gem 'rb-fsevent', require: false
+  gem 'rerun', require: false
   gem 'sass', require: false
 end
 
@@ -26,5 +21,5 @@ group :test do
 end
 
 group :production do
-  gem 'newrelic_rpm'
+#  gem 'newrelic_rpm'
 end

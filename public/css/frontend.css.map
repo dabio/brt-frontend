@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAQ,yBAAc,CAEtB,QAAS,CACP,SAAS,CAAE,KAAK,CAChB,MAAM,CAAE,IAAI,CACZ,aAAa,CAAE,IAAI",
+"sources": ["../../assets/sass/frontend.scss"],
+"names": [],
+"file": "frontend.css"
+}
