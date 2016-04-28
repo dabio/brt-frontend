@@ -30,26 +30,13 @@ class Email < Base
   end
 
   def send_email(opts={})
-    require 'net/smtp'
-
-    opts[:to]       ||= ENV['EMAIL_TO']
-    opts[:from]     ||= "#{name} <#{email}>"
-    opts[:server]   ||= ENV['EMAIL_SERVER']
-    opts[:port]     ||= ENV['EMAIL_PORT']
-    opts[:user]     ||= ENV['EMAIL_USERNAME']
-    opts[:password] ||= ENV['EMAIL_PASSWORD']
-
-    msg = <<END_OF_MESSAGE
-From: #{opts[:from]}
-To: <#{opts[:to]}>
-Subject: Nachricht von berlinracingteam.de
-
-#{message}
-END_OF_MESSAGE
-
-    Net::SMTP.start(opts[:server], opts[:port], opts[:from], opts[:user], opts[:password], :plain) do |smtp|
-      smtp.send_message msg, opts[:from], opts[:to]
+    mail = SendGrid::Mail.new do |m|
+      m.to = ENV['EMAIL_TO']
+      m.from = "#{name} <#{email}>"
+      m.subject = 'Nachricht von berlinracingteam.de'
+      m.text = message
     end
+    SendGrid::Client.new(api_key: ENV['SENDGRID_KEY']).send(mail)
   end
 
 end

@@ -40,7 +40,7 @@ end
 
 desc 'Loads the latest database dump'
 task :latest do
-  %x(curl -o latest.dump `heroku pgbackups:url --app brt-backend`)
+  %x(curl -o latest.dump `heroku pg:backups public-url --app brt-backend`)
   %x(pg_restore --verbose --clean --no-acl --no-owner -d brt latest.dump)
 end
 

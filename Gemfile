@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.2.1'
+ruby '2.3.0'
 
 gem 'dm-core'
 gem 'dm-aggregates'
@@ -7,8 +7,9 @@ gem 'dm-postgres-adapter'
 gem 'dm-timestamps'
 gem 'dm-validations'
 gem 'rack-canonical-host'
-gem 'rack-timeout', require: 'rack/timeout'
+# gem 'rack-timeout', require: 'rack/timeout'
 gem 'redcarpet'
+gem 'sendgrid-ruby'
 gem 'sinatra', require: 'sinatra/base'
 gem 'sinatra-r18n', require: 'sinatra/r18n'
 gem 'puma', require: false
