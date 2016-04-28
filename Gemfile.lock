@@ -39,6 +39,7 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
+    rake (11.1.2)
     rb-fsevent (0.9.7)
     redcarpet (3.3.4)
     sass (3.4.22)
@@ -78,6 +79,7 @@ DEPENDENCIES
   puma
   rack-canonical-host
   rack-test
+  rake
   rb-fsevent
   redcarpet
   sass
