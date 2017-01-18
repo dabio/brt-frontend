@@ -5,7 +5,7 @@
 default: all
 
 all:
-	go build -v src/**/*.go && ./web
+	go build -v src/**/web.go && ./web
 
 latest:
 	curl -o latest.dump `heroku pg:backups public-url --app brt-backend`
