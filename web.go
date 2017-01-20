@@ -47,7 +47,7 @@ func track(next http.Handler, env string) http.Handler {
 
 func main() {
 	c := context{
-		templates: template.Must(template.ParseGlob("src/web/views/*.tmpl")),
+		templates: template.Must(template.ParseGlob("./views/*.tmpl")),
 	}
 	env := os.Getenv("ENV")
 
