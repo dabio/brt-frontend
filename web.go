@@ -7,6 +7,8 @@ import (
 	"net/http"
 	"os"
 	"time"
+
+	_ "github.com/lib/pq"
 )
 
 type context struct {
@@ -16,6 +18,8 @@ type context struct {
 
 func (c *context) index(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+
+	//c.db.Query("SELECT id, created_at, date, title, url FROM events")
 
 	c.render(w, "index")
 }
@@ -46,8 +50,15 @@ func track(next http.Handler, env string) http.Handler {
 }
 
 func main() {
+	db, err := sql.Open("postgres", os.Getenv("DATABASE"))
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer db.Close()
+
 	c := context{
 		templates: template.Must(template.ParseGlob("./views/*.tmpl")),
+		db:        db,
 	}
 	env := os.Getenv("ENV")
 
