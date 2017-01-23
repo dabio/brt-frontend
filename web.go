@@ -8,6 +8,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/dabio/brt-go/models"
 	_ "github.com/lib/pq"
 )
 
@@ -19,7 +20,12 @@ type context struct {
 func (c *context) index(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 
-	//c.db.Query("SELECT id, created_at, date, title, url FROM events")
+	events, err := models.GetCalendarEvents(c.db, 2015)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+
+	log.Printf("%v", events)
 
 	c.render(w, "index")
 }
