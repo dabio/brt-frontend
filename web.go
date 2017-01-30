@@ -43,17 +43,29 @@ func (c *context) render(w http.ResponseWriter, tmpl string, data interface{}) {
 	}
 }
 
-func track(next http.Handler, env string) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if env != "production" {
+func enableCORS(fn http.HandlerFunc) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		scheme := "http"
+		if r.TLS != nil {
+			scheme = "https"
+		}
+		w.Header().Set("Access-Control-Allow-Origin", scheme+"://"+r.Host)
+
+		fn(w, r)
+	}
+}
+
+func track(fn http.HandlerFunc) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		if os.Getenv("ENV") != "production" {
 			defer func(start time.Time, r *http.Request) {
 				elapsed := time.Since(start)
 				log.Printf("%s %s %s", r.Method, r.URL, elapsed)
 			}(time.Now(), r)
 		}
 
-		next.ServeHTTP(w, r)
-	})
+		fn(w, r)
+	}
 }
 
 func init() {
@@ -71,14 +83,23 @@ func main() {
 		templates: template.Must(template.ParseGlob("./views/*.tmpl")),
 		db:        db,
 	}
-	env := os.Getenv("ENV")
 
 	m := http.NewServeMux()
 	m.Handle("/css/", http.FileServer(http.Dir("./static/")))
 	m.Handle("/img/", http.FileServer(http.Dir("./static/")))
 
-	m.Handle("/rennen.ics", track(http.HandlerFunc(c.calendar), env))
-	m.Handle("/", track(http.HandlerFunc(c.index), env))
+	m.Handle("/", track(enableCORS(c.index)))
+	m.Handle("/rennen.ics", track(enableCORS(c.calendar)))
 
-	log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), m))
+	s := &http.Server{
+		Addr:         ":" + os.Getenv("PORT"),
+		Handler:      m,
+		ReadTimeout:  5 * time.Second,
+		WriteTimeout: 10 * time.Second,
+		// Go1.8
+		// IdleTimeout: 120 * time.Second,
+		MaxHeaderBytes: 1 << 20,
+	}
+
+	log.Fatal(s.ListenAndServe())
 }
