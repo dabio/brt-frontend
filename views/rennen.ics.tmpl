@@ -8,13 +8,13 @@ X-WR-TIMEZONE:UTC
 X-WR-CALDESC:Berlin Racing Team Rennen
 {{ range . }}
 BEGIN:VEVENT
-DTSTAMP:{{ .CalendarDStamp }}
-DTSTART;VALUE=DATE:{{ .CalendarDStart }}
-DTEND;VALUE=DATE:{{ .CalendarDEnd }}
-SUMMARY:{{ .Title }}\, {{ .Distance }}km
+DTSTAMP:{{ .DTStamp }}
+DTSTART;VALUE=DATE:{{ .DTStart }}
+DTEND;VALUE=DATE:{{ .DTEnd }}
+SUMMARY:{{ .Summary }}
 {{ if gt (len .URL) 3 }}URL:{{ .URL }}{{ end }}
-{{ range .People }}
-ATTENDEE;PARTSTAT=ACCEPTED;CN="{{ .Name }}":MAILTO:{{ .Email }}
+{{ range .Attendees }}
+ATTENDEE;PARTSTAT=ACCEPTED;CN={{ .CN }}
 {{ end }}
 END:VEVENT
 {{ end }}

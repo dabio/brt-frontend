@@ -1,4 +1,0 @@
-# External packages folder
-vendor/**
-!vendor/manifest
-!vendor/vendor.json
