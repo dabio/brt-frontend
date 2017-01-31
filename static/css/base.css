@@ -13,6 +13,12 @@ header {
 	margin-top: 3rem;
 	margin-bottom: 2rem;
 }
+h1 a {
+	background:url(/img/header.png) no-repeat;
+	color: #333;
+	padding-left: 3.5rem;
+	padding-top: 0.18rem;
+}
 
 figure {
 	max-width: 51.62rem;
@@ -25,14 +31,22 @@ figure img {
 	margin-top: 3rem;
 	margin-bottom: 2rem;
 }
-
-h1 a {
-	background:url(/img/header.png) no-repeat;
-	color: #333;
-	padding-left: 3.5rem;
-	padding-top: 0.18rem;
+ul {
+	list-style: none;
+}
+li {
+	display: inline;
+}
+li img {
+	width: 10.535rem;
 }
 
 a {
 	text-decoration: none;
+}
+
+footer {
+	font-size: 85%;
+	margin-top: 3rem;
+	margin-bottom: 10rem;
 }
