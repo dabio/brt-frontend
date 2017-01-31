@@ -22,7 +22,13 @@ type context struct {
 func (c *context) index(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 
-	c.render(w, "index", nil)
+	data := struct{
+		Year int
+	} {
+		time.Now().Year(),
+	}
+
+	c.render(w, "index", data)
 }
 
 func (c *context) calendar(w http.ResponseWriter, r *http.Request) {
