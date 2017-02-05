@@ -1,4 +1,4 @@
-package models
+package main
 
 // VEvent provides the grouping of component properties that describe the
 // event.

@@ -10,7 +10,6 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/dabio/brt-go/models"
 	_ "github.com/lib/pq"
 )
 
@@ -22,9 +21,9 @@ type context struct {
 func (c *context) index(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 
-	data := struct{
+	data := struct {
 		Year int
-	} {
+	}{
 		time.Now().Year(),
 	}
 
@@ -35,7 +34,7 @@ func (c *context) calendar(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/calendar")
 
 	year, _ := strconv.Atoi(time.Now().Format("2006"))
-	events, err := models.GetCalendarEvents(c.db, year)
+	events, err := GetCalendarEvents(c.db, year)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
