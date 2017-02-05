@@ -40,6 +40,9 @@ li {
 li img {
 	width: 10.535rem;
 }
+li svg {
+  width: 25%;
+}
 
 a {
 	text-decoration: none;
