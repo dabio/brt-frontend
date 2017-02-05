@@ -82,7 +82,7 @@ func (e *event) Organizer() Attendee {
 }
 
 // Attendees defines a list of "attendees" within a calendar component.
-func (e *event) Attendees() []*Attendee {
+func (e *event) Attendees() []*person {
 	return e.people
 }
 
@@ -95,7 +95,7 @@ func (p *person) CN() string {
 	return fmt.Sprintf("%s:mailto:%s", p.name, p.email)
 }
 
-func getCalendarEvents(db *sql.DB, year int) (events []Event, err error) {
+func getCalendarEvents(db *sql.DB, year int) (events []event, err error) {
 	query := `
 	SELECT
 		e.id, e.title, e.date, e.created_at, e.url, e.distance,
