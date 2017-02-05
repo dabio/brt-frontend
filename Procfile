@@ -1,1 +1,1 @@
-web: web
+web: brt-go
