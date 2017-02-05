@@ -22,6 +22,7 @@ type VEvent interface {
 	DTEnd() string
 	Summary() string
 	URL() string
+	Organizer() Attendee
 	Attendees() []*Attendee
 }
 
@@ -35,9 +36,16 @@ type event struct {
 	title     string
 	date      *time.Time
 	createdAt *time.Time
+	createdBy *person
 	url       string
 	distance  int
 	people    []*person
+}
+
+// Property defines the persistent, globally unique identifier for the calendar
+// component.
+func (e *event) UID() string {
+	return fmt.Sprintf("%s-%d", e.DTStamp(), e.id)
 }
 
 // DTStamp specifies the date and time the instance of the iCalendar object
@@ -68,8 +76,13 @@ func (e *event) URL() string {
 	return e.url
 }
 
+// Organizer defines th eorganizer of the calendar component.
+func (e *event) Organizer() Attendee {
+	return e.createdBy
+}
+
 // Attendees defines a list of "attendees" within a calendar component.
-func (e *event) Attendees() []*person {
+func (e *event) Attendees() []*Attendee {
 	return e.people
 }
 
@@ -82,13 +95,15 @@ func (p *person) CN() string {
 	return fmt.Sprintf("%s:mailto:%s", p.name, p.email)
 }
 
-func getCalendarEvents(db *sql.DB, year int) (events []event, err error) {
+func getCalendarEvents(db *sql.DB, year int) (events []Event, err error) {
 	query := `
 	SELECT
 		e.id, e.title, e.date, e.created_at, e.url, e.distance,
-		p.first_name || ' ' || p.last_name AS name, p.email
+		p.first_name || ' ' || p.last_name AS name, p.email,
+		o.first_name || ' ' || o.last_name AS oname, o.email AS oemail
 	FROM
 		events AS e
+		LEFT JOIN people AS o ON e.person_id = o.id
 		LEFT JOIN participations AS t ON e.id = t.event_id
 		LEFT JOIN people AS p ON t.person_id = p.id
 	WHERE
@@ -107,9 +122,22 @@ func getCalendarEvents(db *sql.DB, year int) (events []event, err error) {
 	var name, email sql.NullString
 	for rows.Next() {
 		var e event
-		if err = rows.Scan(&e.id, &e.title, &e.date, &e.createdAt, &e.url, &e.distance, &name, &email); err != nil {
+		var o person
+		err = rows.Scan(
+			&e.id,
+			&e.title,
+			&e.date,
+			&e.createdAt,
+			&e.url,
+			&e.distance,
+			&name,
+			&email,
+			&o.name,
+			&o.email)
+		if err != nil {
 			return
 		}
+		e.createdBy = &o
 
 		// Init lastEvent when none was set before.
 		if lastEvent.id == 0 {
