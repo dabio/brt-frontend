@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"runtime"
 	"strconv"
 	"time"
 
@@ -73,7 +74,7 @@ func track(fn http.HandlerFunc) http.HandlerFunc {
 }
 
 func init() {
-	//	runtime.GOMAXPROCS(runtime.NumCPU())
+	runtime.GOMAXPROCS(runtime.NumCPU())
 }
 
 func main() {
